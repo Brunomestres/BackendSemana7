@@ -6,6 +6,9 @@ const depositionsController = new DepositionsController()
 
 routesDepositions.post('/', depositionsController.save)
 routesDepositions.get('/', depositionsController.find)
+routesDepositions.get('/:id', depositionsController.findOne)
+routesDepositions.put('/:id', depositionsController.update)
+routesDepositions.delete('/:id', depositionsController.delete)
 
 
 
