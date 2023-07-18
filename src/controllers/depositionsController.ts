@@ -74,9 +74,34 @@ class DepositionsController {
       if(!depositions) {
         return res.status(404).json({ message: "Depoimento não encontrado!"})
       }
-
       await depositions.deleteOne()
       return res.status(200).json({ message: "Depoimento excluido com sucesso!"})
+    } catch (error) {
+      console.log(error)
+      return res.status(500).json({ message: 'Aconteceu um erro, tente novamente!'})
+    }
+  }
+
+
+  async randomDepositions(req:Request, res:Response) {
+    try {
+      const depositions = await Depositions.find()
+
+      const total = depositions.length - 1
+
+      let numbers = []
+
+      for (let index = 0; index < 3; index++) {
+
+        numbers.push(Math.ceil(Math.random() * total))
+      }
+
+
+
+      const depositionsRandom = numbers.map(item => depositions[item])
+
+
+      return res.status(200).json(depositionsRandom)
     } catch (error) {
       console.log(error)
       return res.status(500).json({ message: 'Aconteceu um erro, tente novamente!'})

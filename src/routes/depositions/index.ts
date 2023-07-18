@@ -4,6 +4,7 @@ const routesDepositions = Router()
 
 const depositionsController = new DepositionsController()
 
+routesDepositions.get('/home', depositionsController.randomDepositions)
 routesDepositions.post('/', depositionsController.save)
 routesDepositions.get('/', depositionsController.find)
 routesDepositions.get('/:id', depositionsController.findOne)
